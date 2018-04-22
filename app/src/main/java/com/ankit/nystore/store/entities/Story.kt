@@ -17,6 +17,7 @@ data class Story(
     @ColumnInfo(name = "short_url") var short_url: String?,
     @ColumnInfo(name = "title") var title: String?,
     @ColumnInfo(name = "abstract") var abstract: String?,
+    @ColumnInfo(name = "multimedia") var multimedia: ArrayList<MultiMedia>?,
     @ColumnInfo(name = "url") var url: String?) {
   
   @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id: Int? = null
