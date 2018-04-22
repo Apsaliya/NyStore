@@ -14,6 +14,7 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -25,12 +26,12 @@ android {
 }
 
 ext {
-    versions = [support           : "27.1.0",
+    versions = [support           : "27.0.2",
                 rxjava            : "2.1.7",
                 rxAndroid         : "2.0.2",
                 androidArchVersion: "1.1.0",
                 androidArchRuntime: "1.1.1",
-                room              : "1.0.0",
+                room              : "1.1.0-beta3",
                 rxbinding         : "2.1.1",
                 timber            : "4.7.0",
                 constraint        : "1.1.0",
@@ -79,7 +80,7 @@ dependencies {
     implementation rxAnd
 
     implementation arch
-    annotationProcessor "android.arch.lifecycle:compiler:$versions.androidArchVersion"
+    kapt "android.arch.lifecycle:compiler:$versions.androidArchVersion"
 
     implementation roomPersistent
     kapt "android.arch.persistence.room:compiler:$versions.room"
@@ -95,4 +96,5 @@ dependencies {
 
     implementation "com.google.dagger:dagger:$versions.dagger"
     kapt "com.google.dagger:dagger-compiler:$versions.dagger"
+    implementation 'com.android.support:multidex:1.0.3'
 }

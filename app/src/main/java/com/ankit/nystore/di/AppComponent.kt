@@ -1,6 +1,7 @@
 package com.ankit.nystore.di
 
 import android.app.Application
+import com.ankit.nystore.App
 import com.ankit.nystore.feature.ui.MainActivity
 import dagger.BindsInstance
 import dagger.Component
@@ -15,6 +16,6 @@ interface AppComponent {
     
     fun build(): AppComponent
   }
-  
+  fun inject(app: App)
   fun inject(mainActivity: MainActivity)
 }
