@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -32,6 +34,7 @@ ext {
                 rxbinding         : "2.1.1",
                 timber            : "4.7.0",
                 constraint        : "1.1.0",
+                dagger            : "2.15",
                 sdp               : "1.0.5"]
 
     supportDeps = [appcompat: "com.android.support:appcompat-v7:$versions.support",
@@ -83,4 +86,7 @@ dependencies {
     implementation "com.jakewharton.rxbinding2:rxbinding-design:$versions.rxbinding"
 
     implementation "com.jakewharton.timber:timber:$versions.timber"
+
+    implementation "com.google.dagger:dagger:$versions.dagger"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
 }
