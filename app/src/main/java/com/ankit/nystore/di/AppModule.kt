@@ -1,6 +1,9 @@
 package com.ankit.nystore.di
 
+import com.ankit.nystore.App
 import com.ankit.nystore.networking.ApiService
+import com.ankit.nystore.store.StoriesDatabase
+import com.ankit.nystore.store.daos.StoriesDao
 import com.ankit.nystore.util.Constants
 import dagger.Module
 import dagger.Provides
@@ -10,25 +13,29 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-@Module(subcomponents = [(ViewModelSubComponent::class)])
-class AppModule {
+@Module
+class AppModule(val app: App) {
+  
+  @Provides
+  @Singleton
+  internal fun application(app: App) = app
   
   @Provides
   @Singleton
   fun provideApiService(): ApiService {
     val okHttpBuilder = OkHttpClient.Builder()
-  
+    
     okHttpBuilder.addInterceptor({ chain ->
       val original = chain.request()
-    
+      
       val request = original.newBuilder()
           .header("Accept", "application/json")
           .build()
-    
+      
       chain.proceed(request)
     })
     val okHttpClient = okHttpBuilder.build()
-  
+    
     return Retrofit.Builder()
         .baseUrl(Constants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
@@ -37,4 +44,8 @@ class AppModule {
         .build()
         .create(ApiService::class.java)
   }
+  
+  @Provides
+  @Singleton
+  fun provideStoriesDao(): StoriesDao = StoriesDatabase.getInstance(app).storiesDao()
 }
