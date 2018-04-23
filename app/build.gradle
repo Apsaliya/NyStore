@@ -91,8 +91,6 @@ dependencies {
     implementation roomPersistent
     kapt "android.arch.persistence.room:compiler:$versions.room"
 
-    implementation "com.jakewharton.rxbinding2:rxbinding-design:$versions.rxbinding"
-
     implementation "com.jakewharton.timber:timber:$versions.timber"
 
     //retrofit
