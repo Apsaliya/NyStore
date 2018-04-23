@@ -11,4 +11,8 @@ class RemoteDataSource @Inject constructor(val service: ApiService) : DataSource
     return service.getTopStories(apiKey = key)
         .map { t -> t.results }
   }
+  
+  override fun addStories(stories: List<Story>) {
+    // add stories remotely not supported.
+  }
 }

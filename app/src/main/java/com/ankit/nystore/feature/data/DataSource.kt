@@ -5,4 +5,5 @@ import io.reactivex.Flowable
 
 interface DataSource {
   fun getAllStories(key: String) : Flowable<List<Story>>
+  fun addStories(stories: List<Story>)
 }

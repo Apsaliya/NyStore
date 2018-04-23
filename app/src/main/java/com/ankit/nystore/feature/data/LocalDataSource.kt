@@ -8,6 +8,8 @@ import javax.inject.Inject
 class LocalDataSource @Inject constructor(val storiesDao: StoriesDao) : DataSource {
   
   override fun getAllStories(key : String): Flowable<List<Story>> {
-    return Flowable.empty()
+    return storiesDao.getAllStories()
   }
+  
+  override fun addStories(stories: List<Story>) = storiesDao.saveReport(stories)
 }
