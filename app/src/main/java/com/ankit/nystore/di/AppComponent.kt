@@ -1,7 +1,6 @@
 package com.ankit.nystore.di
 
 import com.ankit.nystore.App
-import com.ankit.nystore.feature.FeedViewModel
 import com.ankit.nystore.feature.ui.MainActivity
 import dagger.Component
 import javax.inject.Singleton

@@ -12,13 +12,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spinKitStory"
+            style="@style/SpinKitView.Large.DoubleBounce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:visibility="gone"
+            app:SpinKit_Color="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@+id/primary_text"
+            app:layout_constraintDimensionRatio="H,16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
         <ImageView
             android:id="@+id/media_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
+            android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintBottom_toTopOf="@+id/primary_text"
-            app:layout_constraintDimensionRatio="H,16:9"
+            app:layout_constraintDimensionRatio="H,16:10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,13 +45,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_16sdp"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_16sdp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="#DE000000"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toTopOf="@+id/sub_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/media_image" />
 
         <TextView
@@ -43,12 +61,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_16sdp"
-            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="#8A000000"
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/_12ssp"
             app:layout_constraintTop_toBottomOf="@+id/primary_text" />
 
     </android.support.constraint.ConstraintLayout>

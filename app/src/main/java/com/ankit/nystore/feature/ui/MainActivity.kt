@@ -7,6 +7,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.widget.LinearLayout.VERTICAL
 import com.ankit.nystore.App
 import com.ankit.nystore.base.BaseActivity
+import com.ankit.nystore.extesions.hide
+import com.ankit.nystore.extesions.show
+import com.ankit.nystore.extesions.showSnackBar
 import com.ankit.nystore.feature.FeedViewModel
 import com.ankit.nystore.feature.FeedViewModelFactory
 import com.ankit.nystore.feature.data.Repo
@@ -35,6 +38,20 @@ class MainActivity : BaseActivity() {
       if (it?.stories != null) {
         val adapter = recycler.adapter
         (adapter as FeedAdapter).dispatchUpdates(it.stories)
+      }
+      
+      if (it?.showError != null && it.showError) {
+        if (it.noData != null && it.noData) {
+          showSnackBar(getString(R.string.error_no_data))
+        } else {
+          showSnackBar(getString(R.string.error_generic))
+        }
+      }
+      
+      if (it?.showLoader != null && it.showLoader) {
+        spinKitFeed.show()
+      } else {
+        spinKitFeed.hide()
       }
     })
   }

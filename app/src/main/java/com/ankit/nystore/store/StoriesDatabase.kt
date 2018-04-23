@@ -18,7 +18,7 @@ abstract class StoriesDatabase : RoomDatabase() {
   
   companion object {
     const val DB_VERSION = 1
-    const val DB_NAME = "Counter.db"
+    const val DB_NAME = "Stories.db"
     private var INSTANCE: StoriesDatabase? = null
     
     fun getInstance(context: Context): StoriesDatabase {
