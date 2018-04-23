@@ -11,6 +11,6 @@ import io.reactivex.Flowable
   @Query("SELECT * FROM Details")
   fun getAllStories(): Flowable<List<Story>>
   
-  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  @Insert(onConflict = OnConflictStrategy.IGNORE)
   fun saveReport(stories: List<Story>)
 }

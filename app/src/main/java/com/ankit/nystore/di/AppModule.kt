@@ -8,6 +8,7 @@ import com.ankit.nystore.util.Constants
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,9 +24,12 @@ class AppModule(val app: App) {
   @Provides
   @Singleton
   fun provideApiService(): ApiService {
-    val okHttpBuilder = OkHttpClient.Builder()
+    var okHttpBuilder = OkHttpClient.Builder()
+  
+    val loggingInterceptor = HttpLoggingInterceptor()
+    loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
     
-    okHttpBuilder.addInterceptor({ chain ->
+    okHttpBuilder = okHttpBuilder.addInterceptor({ chain ->
       val original = chain.request()
       
       val request = original.newBuilder()
@@ -34,6 +38,7 @@ class AppModule(val app: App) {
       
       chain.proceed(request)
     })
+    okHttpBuilder.interceptors().add(loggingInterceptor)
     val okHttpClient = okHttpBuilder.build()
     
     return Retrofit.Builder()

@@ -97,4 +97,5 @@ dependencies {
     implementation "com.google.dagger:dagger:$versions.dagger"
     kapt "com.google.dagger:dagger-compiler:$versions.dagger"
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 }

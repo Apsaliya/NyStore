@@ -21,7 +21,6 @@ abstract class StoriesDatabase : RoomDatabase() {
     const val DB_NAME = "Counter.db"
     private var INSTANCE: StoriesDatabase? = null
     
-    @Suppress("SENSELESS_COMPARISON")
     fun getInstance(context: Context): StoriesDatabase {
       if (INSTANCE == null) {
         synchronized(StoriesDatabase::class) {
