@@ -44,10 +44,10 @@ class MainActivity : BaseActivity() {
     
       if (it?.showError != null && it.showError) {
         spinKitFeed.hide()
-        if (it.noData != null && it.noData) {
-          showSnackBar(getString(R.string.error_no_data))
-        } else if (!hasInternetConnection()) {
+        if (it.noData != null && it.noData && !hasInternetConnection()) {
           showSnackBar(getString(R.string.error_no_data_no_internet))
+        } else if (it.noData != null && it.noData) {
+          showSnackBar(getString(R.string.error_no_data))
         } else {
           showSnackBar(getString(R.string.error_generic))
         }
