@@ -1,5 +1,3 @@
-@file:Suppress("UNCHECKED_CAST")
-
 package com.ankit.nystore.feature
 
 import android.arch.lifecycle.ViewModel

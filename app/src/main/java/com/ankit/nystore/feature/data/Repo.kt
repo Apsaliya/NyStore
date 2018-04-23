@@ -19,6 +19,13 @@ class Repo @Inject constructor(val localDataSource: LocalDataSource, val remoteD
           .toFlowable().blockingFirst()
     })
         .doOnNext { addStories(it) }
+        .flatMap { t ->
+          if (t.isEmpty()) {
+            Flowable.error(NoDataFoundException("No data found."))
+          } else {
+            Flowable.just(t)
+          }
+        }
         .switchIfEmpty(Flowable.error(NoDataFoundException("No data found.")))
   }
   
