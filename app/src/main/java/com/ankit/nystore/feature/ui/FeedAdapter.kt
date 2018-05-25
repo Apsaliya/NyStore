@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ankit.nystore.extesions.getStoryImageUrl
 import com.ankit.nystore.extesions.hide
 import com.ankit.nystore.extesions.onRequestCompleted
 import com.ankit.nystore.extesions.show
@@ -39,20 +40,19 @@ internal class FeedAdapter(var context: Context) : RecyclerView.Adapter<FeedAdap
     holder.itemView.primary_text.text = story.title
     holder.itemView.sub_text.text = story.subTitle
     holder.itemView.tag = story
-    holder.itemView.spinKitStory.show()
-    val url = if (story.multimedia!!.size >= 4) {
-      story.multimedia!![4].url
-    } else {
-      story.multimedia!![0].url
+    
+    val url = story.getStoryImageUrl()
+    if (url != null) {
+      holder.itemView.spinKitStory.show()
+      Glide.with(context)
+          .load(url)
+          .onRequestCompleted({
+            holder.itemView.spinKitStory.hide()
+          }, {
+            holder.itemView.spinKitStory.hide()
+          })
+          .into(holder.itemView.media_image)
     }
-    Glide.with(context)
-        .load(url)
-        .onRequestCompleted({
-          holder.itemView.spinKitStory.hide()
-        }, {
-          holder.itemView.spinKitStory.hide()
-        })
-        .into(holder.itemView.media_image)
   }
   
   override fun onViewRecycled(holder: ViewHolder?) {

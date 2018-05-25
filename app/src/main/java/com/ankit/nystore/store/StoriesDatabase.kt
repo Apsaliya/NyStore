@@ -5,6 +5,7 @@ import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import android.content.Context
+import android.database.sqlite.SQLiteDatabase
 import com.ankit.nystore.store.StoriesDatabase.Companion.DB_VERSION
 import com.ankit.nystore.store.converters.Converters
 import com.ankit.nystore.store.daos.StoriesDao
@@ -23,6 +24,7 @@ abstract class StoriesDatabase : RoomDatabase() {
     
     fun getInstance(context: Context): StoriesDatabase {
       if (INSTANCE == null) {
+        SQLiteDatabase.create(null)
         synchronized(StoriesDatabase::class) {
           INSTANCE = Room.databaseBuilder(context.applicationContext,
               StoriesDatabase::class.java, DB_NAME)

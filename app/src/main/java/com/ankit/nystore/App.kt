@@ -6,6 +6,7 @@ import android.support.multidex.MultiDex
 import com.ankit.nystore.di.AppComponent
 import com.ankit.nystore.di.AppModule
 import com.ankit.nystore.di.DaggerAppComponent
+import timber.log.Timber
 
 class App : Application() {
   var myComponent: AppComponent? = null

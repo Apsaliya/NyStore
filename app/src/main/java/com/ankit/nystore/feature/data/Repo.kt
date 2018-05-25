@@ -14,9 +14,12 @@ class Repo @Inject constructor(val localDataSource: LocalDataSource, val remoteD
         , BiFunction<List<Story>, List<Story>, List<Story>> { t1, t2 ->
       Flowable.just(t1, t2)
           .flatMapIterable { t -> t }
-          .distinct { t -> return@distinct t.created_date }
+          .distinct { t ->
+            return@distinct t.created_date
+          }
           .toList()
-          .toFlowable().blockingFirst()
+          .toFlowable()
+          .blockingFirst()
     })
         .doOnNext { addStories(it) }
         .flatMap { t ->
